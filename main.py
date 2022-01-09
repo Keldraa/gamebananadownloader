@@ -4,7 +4,7 @@ from discord.ext import commands
 from hurry.filesize import size
 import api
 
-TOKEN = "OTI5Njg5NTc3MTY4NDQxMzk0.Ydq-4w.t075-NSdKUxHp7_aIbB_8koHgjI"
+TOKEN = ""
 client = commands.Bot(command_prefix='?')
 
 
