@@ -18,7 +18,9 @@ async def request(ctx, arg1):
     if  j["_aGame"]["_sName"] == "Counter-Strike: Source":    
         team_url = j["_AfiliatedStudio"]["_sProfileUrl"] 
         submitter = j["_aSubmitter"]["_sName"]
-        
+
+        download_url = j["_aFiles"]["_sDownloadUrl"]
+
     else:
         await ctx.send("Game must be css")
 
