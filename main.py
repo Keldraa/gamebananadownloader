@@ -32,9 +32,9 @@ async def request(ctx, arg1):
         embed = discord.Embed(title=f"{name} by {creator}",
                               description=f"Upload Date: {upload_date} \n Download URL: {download_url}"
                               )
-        embed.set_footer(text="Size: " + size(j["_aFiles"][0]["_nFilesize"]), icon_url=creator_avatar_url)
+        embed.set_footer(text="Size: " + size(j["_aFiles"][0]["_nFilesize"]), icon_url="https://cdn.discordapp.com/icons/639948169643425792/ac76d8508b89af4403b01dd7893a4b14.webp")
         embed.set_image(url="https://images.gamebanana.com/img/ss/mods/" + map_image)
-        embed.set_thumbnail(url="https://cdn.discordapp.com/icons/639948169643425792/ac76d8508b89af4403b01dd7893a4b14.webp")
+        embed.set_thumbnail(url=creator_avatar_url)
 
         await ctx.send(embed=embed)
 
