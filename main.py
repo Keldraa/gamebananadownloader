@@ -11,7 +11,7 @@ with open("config.yml", "r") as file:
 
 
 TOKEN = cfg['token']
-client = commands.Bot(command_prefix='?')
+client = commands.Bot(command_prefix=cfg['prefix'])
 
 
 @client.command(aliases=["r", "rq", "dl"])

@@ -7,6 +7,7 @@ paths:
 # Token for the discord bot (Don't share this with anyone.)
 # You could follow this guide if you don't know how to get a token (https://www.writebots.com/discord-bot-token/)
 token: ""
+prefix: '?'
 
 # Whether to check if the mod you are trying to install is supported (1: Enabled, 0: Disabled)
 game_check: 1
