@@ -6,9 +6,6 @@ import patoolib
 import requests
 import os
 
-# PATH = "/home/csgoservers/serverfiles4/css/maps/"
-PATH = "/home/dora/Desktop"
-
 
 class GamebananaAPI:
     def __init__(self, mod_id):
@@ -31,11 +28,9 @@ def get_date(timestamp):
     return dt_object
 
 
-def download_file(url, local_filename, map_file):
+def download_file(url, file, path):
     with requests.get(url, stream=True) as r:
-        with open(map_file, 'wb') as f:
+        with open(file, 'wb') as f:
             shutil.copyfileobj(r.raw, f)
-            patoolib.extract_archive(map_file, outdir=PATH)
-    os.remove(map_file)
-
-    return local_filename
+            patoolib.extract_archive(file, outdir=path)
+    os.remove(file)
