@@ -2,11 +2,10 @@ import json
 import shutil
 from datetime import datetime
 
-from pyunpack import Archive
+from zipfile import ZipFile
 import bz2
 import requests
 import os
-
 
 class GamebananaAPI:
     def __init__(self, mod_id):
@@ -30,9 +29,29 @@ def get_date(timestamp):
 
 
 def download_file(url, file, path, name):
+    
+    member = get_contents(file)
+
+    print(member)
+    
     with requests.get(url, stream=True) as r:
         with open(file, 'wb') as f:
             print(path)
             shutil.copyfileobj(r.raw, f)
-        Archive(file).extractall(path)
+        
+       ZipFile.extract(file[, path[, pwd]])
     os.remove(file)
+
+def get_contents(file):
+    z = ZipFile(file, "r")
+
+    print("z: " str(z))
+    print("namelist: " str(z.namelist()))
+
+    content = ""
+
+    for i in z.namelist():
+        if i.rsplit(".")[-1] == 'bsp':
+            content = i
+    
+    return content
