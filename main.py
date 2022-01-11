@@ -33,7 +33,7 @@ async def request(ctx, arg1):
         map_file = j["_aFiles"][0]["_sFile"]
         upload_date = api.get_date(j["_aFiles"][0]["_tsDateAdded"])
 
-        api.download_file(url=download_url, file=map_file, path=cfg['paths'][j['_aGame']['_sAbbreviation']], name)
+        api.download_file(url=download_url, file=map_file, path=cfg['paths'][j['_aGame']['_sAbbreviation']], name=name)
 
         embed = discord.Embed(title=f"{name} by {creator}",
                               description=f"Upload Date: {upload_date} \n Download URL: {download_url} \n "
