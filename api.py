@@ -33,6 +33,6 @@ def download_file(url, file, path):
         with open(file, 'wb') as f:
             print(path)
             shutil.copyfileobj(r.raw, f)
-            Archive(file).extractall(pathcle)
+            Archive(file).extractall(path)
 
     os.remove(file)
