@@ -3,6 +3,7 @@ import shutil
 from datetime import datetime
 
 from pyunpack import Archive
+import bz2
 import requests
 import os
 
@@ -28,11 +29,10 @@ def get_date(timestamp):
     return dt_object
 
 
-def download_file(url, file, path):
+def download_file(url, file, path, name):
     with requests.get(url, stream=True) as r:
         with open(file, 'wb') as f:
             print(path)
             shutil.copyfileobj(r.raw, f)
         Archive(file).extractall(path)
-
     os.remove(file)
