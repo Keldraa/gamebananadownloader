@@ -46,6 +46,7 @@ def download_file(url, file, path, tree):
         Archive(file).extractall("./temp")
 
         for i in contents:
+
             if os.path.isfile("./temp/" + i):
                 shutil.move("./temp/" + i, path)
             else:
@@ -53,3 +54,13 @@ def download_file(url, file, path, tree):
 
     shutil.rmtree("./temp")
     os.remove(file)
+
+
+def switch(arg):
+    cases = {
+        "rar": "",
+        "zip": "",
+        "tar": "",
+    }
+
+    return cases.get(arg, "Unknown file format.")

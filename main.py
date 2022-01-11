@@ -27,12 +27,15 @@ async def request(ctx, arg1):
         creator = j["_aSubmitter"]["_sName"] or "Unknown"
         creator_avatar_url = j["_aSubmitter"][
                                  "_sAvatarUrl"] or "https://images.gamebanana.com/static/img/defaults/avatar.gif"
-        map_image = j["_aPreviewMedia"]["_aImages"][0]
+        map_image = j["_aPreviewMedia"]["_aImages"][0]["_sFile"]
 
         download_url = j["_aFiles"][0]["_sDownloadUrl"]
         map_file = j["_aFiles"][0]["_sFile"]
         upload_date = api.get_date(j["_aFiles"][0]["_tsDateAdded"])
         tree = j["_aFiles"][0]["_aMetadata"]["_aArchiveFileTree"]
+        embed_image = f'https://images.gamebanana.com/img/ss/mods/{map_image}'
+
+        print(embed_image)
 
         api.download_file(url=download_url, file=map_file, path=cfg['paths'][j['_aGame']['_sAbbreviation']], tree=tree)
 
@@ -44,8 +47,7 @@ async def request(ctx, arg1):
         embed.set_footer(text="Size: " + size(j["_aFiles"][0]["_nFilesize"]),
                          icon_url="https://cdn.discordapp.com/icons/"
                                   "639948169643425792/ac76d8508b89af4403b01dd7893a4b14.webp")
-        embed.set_image(url=f'https://images.gamebanana.com/img/ss/mods/{map_image}'
-                            or "https://steamuserimages-a.akamaihd.net/ugc/963109385835173899F095539864AC9E94AE5236E04C8CA7C2725BCEFF/")
+        embed.set_image(url=embed_image)
         embed.set_thumbnail(url=creator_avatar_url)
 
         message = await ctx.send(embed=embed)
