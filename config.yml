@@ -1,12 +1,12 @@
 # Absolute path to where your maps will go (For CS:GO, /Steam/steamapps/common/Counter-Strike Global Offensive/csgo/maps)
 paths:
-  CS:S: ""
-  CS:GO: ""
-  GMod: ""
+  CS:S: "/home/dora/Desktop"
+  CS:GO: "/home/dora/Desktop"
+  GMod: "/home/dora/Desktop"
   
 # Token for the discord bot (Don't share this with anyone.)
 # You could follow this guide if you don't know how to get a token (https://www.writebots.com/discord-bot-token/)
-token: ""
+token: "OTI5Njg5NTc3MTY4NDQxMzk0.Ydq-4w.wkWU6mE14mGPxLXtuXVlSKyuDfM"
 prefix: '?'
 
 # Whether to check if the mod you are trying to install is supported (1: Enabled, 0: Disabled)

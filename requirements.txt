@@ -1,5 +1,5 @@
-patool~=1.12
 requests~=2.27.1
 discord~=1.7.3
 PyYAML~=6.0
 hurry~=1.1
+pyunpack~=0.2.2
