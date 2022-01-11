@@ -29,12 +29,13 @@ def get_date(timestamp):
 
 def download_file(url, file, path, tree):
     contents = []
+    print(tree)
 
     for i in tree:
-        if (not i.rsplit('.')[-1] == 'bsp') or (not i.rsplit('.')[-1] == 'nav'):
-            pass
-        else:
+        if i.rsplit('.')[-1] == 'bsp'  or i.rsplit('.')[-1] == 'nav':
             contents.append(i)
+        else:
+            return
 
     if not os.path.isdir("./temp"):
         os.mkdir("./temp")
@@ -45,14 +46,18 @@ def download_file(url, file, path, tree):
 
         Archive(file).extractall("./temp")
 
+        print('a')
+        print(contents)
         for i in contents:
+            
+            print(i)
 
             if os.path.isfile("./temp/" + i):
                 shutil.move("./temp/" + i, path)
             else:
                 pass
 
-    shutil.rmtree("./temp")
+        shutil.rmtree("./temp")
     os.remove(file)
 
 
