@@ -2,7 +2,7 @@ import json
 import shutil
 from datetime import datetime
 
-import patoolib
+from pyunpack import Archive
 import requests
 import os
 
@@ -31,6 +31,8 @@ def get_date(timestamp):
 def download_file(url, file, path):
     with requests.get(url, stream=True) as r:
         with open(file, 'wb') as f:
+            print(path)
             shutil.copyfileobj(r.raw, f)
-            patoolib.extract_archive(file, outdir=path)
+            Archive(file).extractall(pathcle)
+
     os.remove(file)
