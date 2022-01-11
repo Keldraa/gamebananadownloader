@@ -3,6 +3,7 @@ import shutil
 from datetime import datetime
 
 from pyunpack import Archive
+import bz2
 import requests
 import os
 
@@ -46,12 +47,7 @@ def download_file(url, file, path, tree):
 
         Archive(file).extractall("./temp")
 
-        print('a')
-        print(contents)
         for i in contents:
-            
-            print(i)
-
             if os.path.isfile("./temp/" + i):
                 shutil.move("./temp/" + i, path)
             else:
