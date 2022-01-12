@@ -35,9 +35,7 @@ async def request(ctx, arg1):
         tree = j["_aFiles"][0]["_aMetadata"]["_aArchiveFileTree"]
         embed_image = f'https://images.gamebanana.com/img/ss/mods/{map_image}'
 
-        print(embed_image)
-
-        api.download_file(url=download_url, file=map_file, path=cfg['paths'][j['_aGame']['_sAbbreviation']], tree=tree)
+        api.download_file(url=download_url, file=map_file, path=cfg['paths'][j['_aGame']['_sAbbreviation']], fastdl_path=cfg['fastdl_paths'][j['_aGame']['_sAbbreviation']], tree=tree)
 
         embed = discord.Embed(title=f"{name} by {creator}",
                               description=f"Upload Date: {upload_date} \n Download URL: {download_url} \n "
