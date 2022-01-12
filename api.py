@@ -7,6 +7,8 @@ import bz2
 import requests
 import os
 
+IsFullCheck = False
+ETCconstant = 9.5e-08
 
 class GamebananaAPI:
     def __init__(self, mod_id):
@@ -28,7 +30,7 @@ def get_date(timestamp):
     return dt_object
 
 
-def download_file(url, file, path, tree):
+def download_file(url, file, path, fastdl_path, tree):
     contents = []
     print(tree)
 
@@ -53,7 +55,8 @@ def download_file(url, file, path, tree):
             else:
                 pass
 
-        shutil.rmtree("./temp")
+    shutil.rmtree("./temp")
+    addToFastdl(path + "/" + i, os.path.join(fastdl_path, "{}.bz2".format(fastdl_path + "/" + i)))
     os.remove(file)
 
 
@@ -65,3 +68,27 @@ def switch(arg):
     }
 
     return cases.get(arg, "Unknown file format.")
+
+def bz2Compress(rootfile, fdfile):
+    print("Compressing {}, ETC: {:.2f} seconds...".format(rootfile, os.path.getsize(rootfile) * ETCconstant))
+    with open(rootfile, "rb") as inp, bz2.BZ2File(fdfile, "wb", compresslevel = 1) as out:
+        shutil.copyfileobj(inp, out)
+
+def addToFastdl(rootfile, fdfile, copy = False):
+	global TotalFilesUpdated, TotalFilesChanged, TotalFilesRemoved
+	
+	if not os.path.exists(fdfile):
+		print("Adding {} to fastdl...".format(rootfile))
+		if copy:
+			copyfile(rootfile, fdfile)
+		else:
+			bz2Compress(rootfile, fdfile)
+	elif IsFullCheck:
+		if copy:
+			if os.path.getsize(fdfile) != os.path.getsize(rootfile) or not filesEqual(rootfile, fdfile):
+				print("Found changed file {}, replacing...".format(rootfile))
+				copyfile(rootfile, fdfile)
+		else:
+			if not filesEqual(rootfile, fdfile, True):
+				print("Found changed file {}, replacing...".format(rootfile))
+				bz2Compress(rootfile, fdfile)
