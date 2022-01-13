@@ -80,14 +80,14 @@ def addToFastdl(rootfile, fdfile, copy = False):
 	if not os.path.exists(fdfile):
 		print("Adding {} to fastdl...".format(rootfile))
 		if copy:
-			copyfile(rootfile, fdfile)
+			shutil.copyfile(rootfile, fdfile)
 		else:
 			bz2Compress(rootfile, fdfile)
 	elif IsFullCheck:
 		if copy:
 			if os.path.getsize(fdfile) != os.path.getsize(rootfile) or not filesEqual(rootfile, fdfile):
 				print("Found changed file {}, replacing...".format(rootfile))
-				copyfile(rootfile, fdfile)
+				shutil.copyfile(rootfile, fdfile)
 		else:
 			if not filesEqual(rootfile, fdfile, True):
 				print("Found changed file {}, replacing...".format(rootfile))
