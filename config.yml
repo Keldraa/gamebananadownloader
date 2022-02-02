@@ -1,24 +1,39 @@
-# Absolute path to where your maps will go (For CS:GO, /Steam/steamapps/common/Counter-Strike Global Offensive/csgo/maps)
+# Absolute path to where your files(maps, materials, sound) will go (For CS:GO, /Steam/steamapps/common/Counter-Strike Global Offensive/csgo)
 paths:
-  CS:S: "D:\/maps"
-  CS:GO: "D:\/maps"
-  GMod: "D:\/maps"
+  CS:S: ""
+  CS:GO: ""
+  GMod: ""
 
 fastdl_paths:
-  CS:S: "D:\/maps\/fastdl"
-  CS:GO: "D:\/maps\/fastdl"
-  GMod: "D:\/maps\/fastdl"
+  CS:S: ""
+  CS:GO: ""
+  GMod: ""
   
 # Token for the discord bot (Don't share this with anyone.)
-# You could follow this guide if you don't know how to get a token (https://www.writebots.com/discord-bot-token/)
+# You can follow this guide if you don't know how to get a token (https://www.writebots.com/discord-bot-token/)
 token: ""
-prefix: '?'
+prefix: '!'
 
 # Whether to check if the mod you are trying to install is supported (1: Enabled, 0: Disabled)
 game_check: 1
 
 # Which games to allow downloads for (1: Enabled, 0: Disabled)
 # Make sure to put the correct GameBanana game abbreviation if you want to add a custom game
+# Note: these are the same abbreviations for the paths up top
 games:
   CS:S: 1
   CS:GO: 0
+  GMod: 0
+
+ftp:
+  host: ""
+  user: ""
+  pass: ""
+  #22 for sftp connections, 21 for ftp connections
+  port: 22
+
+valid_formats:
+  - tar
+  - zip
+  - rar
+
