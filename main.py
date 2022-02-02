@@ -5,10 +5,7 @@ from hurry.filesize import size
 import api
 import yaml
 
-
-with open("config.yml", "r") as file:
-    cfg = yaml.safe_load(file)
-
+cfg = api.cfg
 
 TOKEN = cfg['token']
 client = commands.Bot(command_prefix=cfg['prefix'])
@@ -20,6 +17,9 @@ async def request(ctx, arg1):
     mod_id = url.rsplit('/', 1)[-1]
 
     j = api.GamebananaAPI(mod_id).get_json()
+
+    if j['_aFiles']["_aMetadata"]["_bContainsExe"]:
+        return await ctx.send('**This mod contains an exe!**')
 
     if (cfg['game_check'] == 1 and j['_aGame']['_sAbbreviation'] in cfg['games']) or cfg['game_check'] == 0:
 
